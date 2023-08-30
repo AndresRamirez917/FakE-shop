@@ -1,7 +1,13 @@
 import React from "react";
+import { useContext } from "react";
+import { Contexto } from "../contexto/Contexto";
 
-const Pagination = ({productsPerPage, currentPage, setCurrentPage, totalProducts}) => {
+const Pagination = () => {
   const pageNumber = [];
+  const {currentPage} = useContext(Contexto);
+  const {setCurrentPage} = useContext(Contexto);
+  const {productsPerPage} = useContext(Contexto);
+  const {totalProducts} = useContext(Contexto);
 
   for(let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++){
     pageNumber.push(i)

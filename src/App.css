@@ -74,3 +74,39 @@ color: red;
   cursor: pointer;
   margin-top: auto;
 }
+
+button{
+  cursor: pointer;
+}
+
+.imagenEjemplo{
+  width: 100%;
+}
+
+.carrito{
+  display: flex;
+  background-color: #777;
+}
+
+.productosCarrito{
+  display: flex;
+
+margin: 10px;
+text-align: center;
+}
+
+.productosCarrito img{
+  width: 100px;
+  height: 100px;
+ 
+}
+
+.productoCarrito{
+  border: solid black 1px;
+margin: 0 2px;
+}
+
+.total{
+  text-align: center;
+  color: red;
+}
