@@ -2,23 +2,62 @@ import React, { useContext, useRef, useEffect } from 'react'
 import { Contexto } from '../contexto/Contexto'
 //import paisaje from "src/logo.svg"
 //import marta from "../images/marta.PNG"
-
-const Cart = () => {
+let variable = 1
+//let quantity;
+const Cart = ({id, price, title, image}) => {
     // const [contador, setContador] = useState(1)
     const refCaja = useRef()
 
-const add = product =>{
-   if(cartProduct.find(item=> item.id===product.id)){
-    const productos = cartProduct.map(item => item.id === product.id?{...item, quanti: item.quanti+1}:item
-        )
-        return setCartProduct([...productos])
-   } 
-setCartProduct([...cartProduct, product])
-console.log(cartProduct)   
+const addOne = (product) =>{
+    if (cartProduct.find(item => item.id === id)) {
+        const products = cartProduct.map(item =>
+            item.id === id
+                ? { ...item, quantity: item.quantity =variable+=1 }
+                : item
+        );
+    
+        return setCartProduct([...products]);
+    }
+
+ 
+    setCartProduct([...cartProduct, product]);
+    
+//product.quantity=variable+=1
+//console.log(cartProduct)
+
+ 
 }
 
-const minus = () => {
-    setCantidad(cantidad-1)
+
+// const anadirCarrito = product =>{
+//     if (cartProduct.find(item => item.id === product.id)){    
+//       const products = cartProduct.map(item => item.id === product.id
+//         ?{...item, quantity: item.setQuantity(item.quantity = 1)}
+//         :item 
+//         )
+//         return setCartProduct(products)
+//     }
+//     setCartProduct([...cartProduct, product]);
+//     console.log(product)
+//     }
+
+const minus = (product) => {
+    // setCantidad(cantidad-1)
+    // cantidad<0?setCantidad(0):setCantidad(cantidad)
+    if(cartProduct.find(item=> item.id===product.id)){
+        const productos = cartProduct.map(item => item.id === product.id
+             ?{...item, quantity: item.quantity=--variable}
+             :item
+          
+            
+            )
+            variable<1?variable=1
+            :variable-1
+            console.log(product)
+            return setCartProduct([...productos])
+       }
+    setCartProduct([...cartProduct, product])
+    setVariable([100])
 } 
 
 const del = (product) =>{
@@ -42,6 +81,8 @@ const {cartProduct} = useContext(Contexto)
 const {setCartProduct} = useContext(Contexto)
 const {cantidad} = useContext(Contexto)
 const {setCantidad} = useContext(Contexto)
+//const {variable} = useContext(Contexto)
+//const {setVariable} = useContext(Contexto)
 
 // useEffect(() => {
 //    cantidad
@@ -49,25 +90,24 @@ const {setCantidad} = useContext(Contexto)
 
   return (
     <>
-    <div className='carrito'>
+    <div className='carrito' >
         <div className='productosCarrito'>
-            {cartProduct.map(product=>{
-                return (
-                    <div className='productoCarrito' key={product.id}>
-                        <img src={product.image} alt={product.name} />
+            {cartProduct.map((product)=>(
+                    <div className='productoCarrito' key={id} >
+                        <img src={image} alt={title} />
                         <div className='infoProducto'>
-                         <h3 id='quantity'>Cantidad:{cantidad}</h3>
-                            <h3>{product.name}</h3>
-                            <p>Precio: {Math.floor(product.price*cantidad).toFixed(2)}</p>
+                         <h3 id='quantity'>Cantidad:{variable}</h3>
+                            <h3>{title}</h3>
+                            <p>Precio: {Math.floor(price*variable).toFixed(2)}</p>
                             <div>
-            <button onClick={()=>add(product)} >+</button>
-            <button onClick={minus}>-</button> 
+            <button onClick={()=>addOne(product)} >+</button>
+            <button onClick={()=>minus(product)}>-</button> 
             <button onClick={()=>del(product)}>x</button> 
         </div> 
                         </div>          
                     </div>
-                )
-            })}
+                
+            ))}
     </div>  
     { <div><p className='total'>TOTAL:{}</p></div>}
     </div>
