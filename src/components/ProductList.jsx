@@ -8,10 +8,11 @@ const ProductList = ({id, price, title, image}) => {
   const {products} = useContext(Contexto);
   const {productsPerPage} = useContext(Contexto)
   const {currentPage} = useContext(Contexto)
-  const {cartProduct} = useContext(Contexto)
-  const {setCartProduct} = useContext(Contexto)
+  //const {cartProduct} = useContext(Contexto)
+  const {cartProduct, setCartProduct} = useContext(Contexto)
   const {ProductList} = useContext(Contexto)
   const {quantity} = useContext(Contexto)
+  const {total, setTotal} = useContext(Contexto)
 
   const totalProducts = products.length;
   const lastIndex = currentPage * productsPerPage; // 1 * 6 = 6 página 2 2 *6 = 12
@@ -19,34 +20,43 @@ const ProductList = ({id, price, title, image}) => {
 
 
   const anadirCarrito = (product) =>{
-    setCartProduct((currItems) =>{
-      const isItemFound = currItems.find((item) => item.id === id)
-      if(isItemFound){
-          return currItems.map((item)=>{
-              if(item.id === id){
-                  return {...item, quantity: item.quantity + 1}
-              }else{
-                  return item
-              }
-          })
-      }else{
-          return [...currItems, {id, quantity: 1, price, image, title}]
-      }
-  })
+  //  if(cartProduct.length>0){
+  //   console.log("no vacío")
+  //  }
+  //  setCartProduct((currItems) => {
+  //   const isItemsFound = currItems.find((item) => item.id === id);
+  //   if (isItemsFound) {
+  //     return currItems.map((item) => {
+  //       if (item.id === id) {
+  //         return { ...item, quantity: item.quantity + 1 };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     return [...currItems, { id, quantity: 1, price }];
+  //   }
+  // });
+  // console.log(cartProduct)
+
+  //setTotal(total + product.price * product.quantity);
+if(cartProduct.find((item) => item.id === product.id)){
+      const productos = cartProduct.map((item) => item.id === product.id 
+      ? {...item, quantity: item.quantity + 1}
+      : item 
+        );
+        //setTotal(total + product.price * product.quantity);
+        console.log()
+        return setCartProduct([...productos])
+    }else{
+      setCartProduct([...cartProduct, {id: product.id, price: product.price, quantity: 1, image: product.image}])
     }
-   
+    
+    //console.log(product)
+    console.log(cartProduct)
+    console.log(product.price)
+    }
 
-
-
-    // if(cartProduct.find(item => item.id === product.id)){
-    //   const products = cartProduct.map(item => item.id === product.id ? {...item, quantity: item.quantity + 1}: item
-    //     );
-    //     return setCartProduct([...products])
-    // }
-    // setCartProduct([...cartProduct, product])
-    // console.log(product)
-    // console.log(cartProduct)
-    // }
     
 
 

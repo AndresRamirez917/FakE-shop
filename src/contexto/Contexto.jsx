@@ -9,6 +9,7 @@ export const Datos = ({children}) =>{
     const [currentPage, setCurrentPage] = useState(1);
     const [cartProduct, setCartProduct] = useState([]);
     const [cantidad, setCantidad] = useState();
+    const [total, setTotal] = useState(0)
     //let [variable, setVariable] = useState(1)
     //let quantity;
     //const [totalProducts, setTotalProducts] = useState([])
@@ -34,7 +35,7 @@ export const Datos = ({children}) =>{
       //   }
 
         return(
-            <Contexto.Provider value={{products, setProducts, productsPerPage, setProductsPerPage, currentPage, setCurrentPage, cartProduct, setCartProduct, cantidad, setCantidad, ProductList}}>
+            <Contexto.Provider value={{products, setProducts, productsPerPage, setProductsPerPage, currentPage, setCurrentPage, cartProduct, setCartProduct, cantidad, setCantidad, ProductList, total, setTotal}}>
                 {children}
             </Contexto.Provider>
         )
