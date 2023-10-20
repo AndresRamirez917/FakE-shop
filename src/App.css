@@ -98,15 +98,18 @@ text-align: center;
 .productosCarrito img{
   width: 100px;
   height: 100px;
- 
+  border-radius: 5px;
 }
 
 .productoCarrito{
   border: solid black 1px;
 margin: 0 2px;
+padding: 5px 0;
+border-radius: 10px;
 }
 
 .total{
   text-align: center;
   color: red;
+  font-weight: 700;
 }

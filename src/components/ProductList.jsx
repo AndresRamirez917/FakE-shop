@@ -20,6 +20,7 @@ const ProductList = ({id, price, title, image}) => {
 
 
   const anadirCarrito = (product) =>{
+    setTotal( total + product.price )
   //  if(cartProduct.length>0){
   //   console.log("no vacío")
   //  }
@@ -39,14 +40,11 @@ const ProductList = ({id, price, title, image}) => {
   // });
   // console.log(cartProduct)
 
-  //setTotal(total + product.price * product.quantity);
 if(cartProduct.find((item) => item.id === product.id)){
-      const productos = cartProduct.map((item) => item.id === product.id 
+    const productos = cartProduct.map((item) => item.id === product.id 
       ? {...item, quantity: item.quantity + 1}
-      : item 
+      : item
         );
-        //setTotal(total + product.price * product.quantity);
-        console.log()
         return setCartProduct([...productos])
     }else{
       setCartProduct([...cartProduct, {id: product.id, price: product.price, quantity: 1, image: product.image}])
